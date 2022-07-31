@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Todo ekle</h5></div>
+      <div class="card-body">
+        <form [formGroup]="todoAddForm">
+          <div class="form-group mb-3">
+            <label for="title">Todo Name</label>
+            <input
+              type="text"
+              id="title"
+              formControlName="title"
+              class="form-control"
+              placeholder="Todo Name"
+            />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="userId">UserId</label>
+            <input
+              type="number"
+              id="userId"
+              formControlName="userId"
+              class="form-control"
+              placeholder="UserId"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="id">Id</label>
+            <input
+              type="number"
+              id="id"
+              formControlName="id"
+              class="form-control"
+              placeholder="Id"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="checkbox"
+              id="completed"
+              formControlName="completed"
+              class="form-check-input"
+            >
+            <label class="ms-2" for="completed">Completed</label>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button (click)="add()" class="btn btn-info">Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>
