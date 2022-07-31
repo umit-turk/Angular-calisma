@@ -1,6 +1,26 @@
-<div *ngIf="dataLoaded == false" class="spinner-border text-primary" role="status">
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
   <span class="visually-hidden">Loading...</span>
 </div>
+
+<div class="mb-3">
+  <label for="filterText" class="form-label">Todo ara</label>
+  <input
+    type="text"
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="filterText"
+    placeholder="arama ifadesi giriniz"
+  />
+</div>
+
+<div *ngIf="filterText.length > 2" class="alert alert-success">
+  {{ filterText }} aradınız
+</div>
+
 <table class="table">
   <thead>
     <tr>
@@ -8,13 +28,22 @@
       <th>userId</th>
       <th>title</th>
       <th>completed</th>
+      <th>Kdv'li Fiyat</th>
+      <th></th>
     </tr>
   </thead>
-  <tr *ngFor="let todo of todos">
-    <td>{{ todo.id }}</td>
-    <td>{{ todo.userId }}</td>
-    <td>{{ todo.title }}</td>
-    <td>{{ todo.completed }}</td>
-  </tr>
+  <tbody>
+    <tr *ngFor="let todo of todos | filterPipe: filterText">
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.userId }}</td>
+      <td>{{ todo.title | uppercase }}</td>
+      <td>{{ todo.completed }}</td>
+      <td>{{ todo.id | vatAdded: 18 | currency }}</td>
+      <td>
+        <button (click)="addToCart(todo)" type="button" class="btn btn-success">
+          Sepete ekle
+        </button>
+      </td>
+    </tr>
+  </tbody>
 </table>
-

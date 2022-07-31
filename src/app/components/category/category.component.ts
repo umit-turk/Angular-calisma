@@ -44,7 +44,6 @@ export class CategoryComponent implements OnInit {
   getAllCategoryClass(){
 
     if(!this.currentCategory.userId ){
-      console.log(this.currentCategory);
 
       return "list-group-item active"
     }else {
